@@ -15,6 +15,7 @@ var MessagesView = {
     for (let i = 0; i < arr.length; i++) {
       MessagesView.renderMessage(arr[i]); 
     }
+    
   },
 
   renderMessage: function(message) {
@@ -26,6 +27,7 @@ var MessagesView = {
       message['username'] = "(Anonymous)";
     }
     MessagesView.$chats.append(MessageView.render(message));
+    
   }
 
 };

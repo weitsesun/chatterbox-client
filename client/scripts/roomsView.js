@@ -2,19 +2,25 @@ var RoomsView = {
 
   $button: $('#rooms button'),
   $select: $('#rooms select'),
+  roomList: {},
 
   initialize: function() {
-    RoomsView.renderRoom("superLobby");
-    RoomsView.renderRoom("RedRoom");
-    RoomsView.renderRoom("ChillRoom");
-    RoomsView.renderRoom("LivingRoom");
+    Parse.readAll((data) => {
+      RoomsView.render(data.results);
+    })
   },
 
   render: function(arr) {
-    //do for loop here
-    // for (var i = 0; i < arr.length; i++) {
-
-    // }
+    //put roomname to room List
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].roomname) {
+        RoomsView.roomList[arr[i].roomname] = 1;
+      }
+    }
+    //add room to the DOM
+    for(var key in RoomsView.roomList) {
+      RoomsView.renderRoom(key);
+    }
   },
 
   renderRoom: function(roomName) {
