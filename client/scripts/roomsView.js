@@ -8,6 +8,11 @@ var RoomsView = {
     Parse.readAll((data) => {
       RoomsView.render(data.results);
     })
+
+    RoomsView.$button.on('click', function(event){
+      var room = window.prompt("Please enter roomname");
+      RoomsView.roomList[room] = 1;
+    });
   },
 
   render: function(arr) {
